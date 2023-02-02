@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import Card from "./Card";
 import { formatCurrency } from "./utils";
 
 export default class Notification {
@@ -19,7 +20,7 @@ export default class Notification {
   render({ type, price }) {
     const template = `
 <div class="notification type-${type.toLowerCase()} ${classNames({
-      "is-danger": type === "hawaiian",
+      "is-danger": type === Card.types.HAWAIIAN,
     })}">
   <button class="delete"></button>
   🍕 <span class="type">${type}</span> (<span class="price"> ${formatCurrency(

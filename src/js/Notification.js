@@ -23,23 +23,20 @@ export default class Notification {
       "is-danger": type === Card.types.HAWAIIAN,
     })}">
   <button class="delete"></button>
-  🍕 <span class="type">${type}</span> (<span class="price"> ${formatCurrency(
+  🍕 <span class="type">${type}</span> (<span class="price">${formatCurrency(
       price
-    )} </span>) has been added to your order.
+    )}</span>) has been added to your order.
 </div>
     `;
 
     this.container.innerHTML = template;
     this.notificationDiv.appendChild(this.container);
-    let closeBtns = document.getElementsByClassName("delete");
-    for (const btn of closeBtns) {
-      btn.addEventListener("click", () => {
-        btn.parentElement.remove();
-      });
-    }
+
+    let button = this.container.querySelector(".delete");
+    button.addEventListener("click", () => this.empty());
   }
 
   empty() {
-    document.querySelector("notifications").innerHTML = "";
+    this.container.remove();
   }
 }
